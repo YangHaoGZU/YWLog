@@ -1,0 +1,29 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "24.0.3"
+
+    defaultConfig {
+        minSdkVersion 16
+        externalNativeBuild {
+            cmake {
+                cppFlags "-fexceptions"
+            }
+        }
+        ndk {
+            ldLibs "log"
+            abiFilters 'armeabi'
+        }
+    }
+
+    externalNativeBuild {
+        cmake {
+            path "CMakeLists.txt"
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+}
